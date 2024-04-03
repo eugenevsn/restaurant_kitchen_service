@@ -3,7 +3,10 @@ from django.db import models
 
 
 class DishType(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
+
+    class Meta:
+        ordering = ("name", )
 
     def __str__(self):
         return self.name
@@ -17,11 +20,11 @@ class Cook(AbstractUser):
 
 
 class Dish(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField()
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE, related_name="dishes")
-    cooks = models.ManyToManyField(Cook, related_name="assigned_dishes")
+    cooks = models.ManyToManyField(Cook, related_name="assigned_dishes", blank=True)
 
     class Meta:
         ordering = ("dish_type__name", "name")
@@ -29,4 +32,4 @@ class Dish(models.Model):
         verbose_name_plural = "dishes"
 
     def __str__(self):
-        return f"{self.name}: ${self.price}"
+        return f"{self.dish_type.name} | {self.name}: ${self.price}"
