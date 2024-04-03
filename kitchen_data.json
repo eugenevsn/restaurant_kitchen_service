@@ -1,0 +1,347 @@
+[
+{
+  "model": "kitchen.dishtype",
+  "pk": 1,
+  "fields": {
+    "name": "Bisquits"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 2,
+  "fields": {
+    "name": "Pizza"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 3,
+  "fields": {
+    "name": "Braai"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 4,
+  "fields": {
+    "name": "Bread"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 5,
+  "fields": {
+    "name": "Cakes"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 6,
+  "fields": {
+    "name": "Curries"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 11,
+  "fields": {
+    "name": "Pasta"
+  }
+},
+{
+  "model": "kitchen.dishtype",
+  "pk": 12,
+  "fields": {
+    "name": "Desserts"
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$CiRRWhJlBOUEEeGeYoIyVm$fwcRyqheQwthCLDOOCjIL6NlmR3VD05KQrWjdfx9HZc=",
+    "last_login": "2024-04-03T01:03:47.120Z",
+    "is_superuser": true,
+    "username": "admin.user",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-04-02T01:06:54.154Z",
+    "years_of_experience": 0,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$QyvCfYTCP68Y9sOKLX6Id2$h8pbGylWmDR1WxHEWeGDtjSmV+HWD+i8NcF+CEfEiBQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "willl",
+    "first_name": "William",
+    "last_name": "Brown",
+    "email": "william.brown@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-04-02T01:11:08Z",
+    "years_of_experience": 4,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$niSdjV8S0pJQztyRTna4br$0nS98Ig72fJ6U/k33sGWsas5h625eXv2/yLNeLZ832Q=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "chefmaster",
+    "first_name": "Jofn",
+    "last_name": "Smith",
+    "email": "john.smith@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-04-02T10:48:07Z",
+    "years_of_experience": 10,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$AawUQ6XOrAjgf8YPhNiVkE$zeDxDFqqpzTm+r0IB4QGFa0IX2+aovAtXDt3FYRaLtA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "nickchief",
+    "first_name": "Nick",
+    "last_name": "Brown",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-04-02T10:55:20Z",
+    "years_of_experience": 11,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$rXICq3kQv5WwflkQFsbfRH$6yzc3HVQ3GctrbQ9iLPDlPtO0rlpm1Pll+UOamFPVzQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "culinarypro",
+    "first_name": "Emily",
+    "last_name": "Johnson",
+    "email": "emily.johnson@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-04-02T11:07:47Z",
+    "years_of_experience": 8,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$Y6Ug3ySXdhSOgjpmEPHh7z$AnFYg9SaP73OaDZERLdNEUpiVmr7kMTgtv4kakVPaGs=",
+    "last_login": "2024-04-02T23:15:17Z",
+    "is_superuser": false,
+    "username": "lozcek",
+    "first_name": "Lozcek",
+    "last_name": "Polka",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-04-02T23:10:30Z",
+    "years_of_experience": 5,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$Vz5wu62bnMHcAXwUUCIIfp$OdhX1nMMlP0Qk604b+OqjGElCWLzjLr4Hm1ihPwnJlE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "kitchenwizard",
+    "first_name": "Sarah",
+    "last_name": "Taylor",
+    "email": "sarah.taylor@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-04-03T02:23:49.304Z",
+    "years_of_experience": 9,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.cook",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$WTJsmSSPklBRBqrmkgSWmE$T4dAW+oUVFTjgjzms3RQJYERADmU6frj13LcLsUQC9I=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "masterchef123",
+    "first_name": "Sophia",
+    "last_name": "Martinez",
+    "email": "sophia.martinez@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-04-03T02:29:15.583Z",
+    "years_of_experience": 15,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 1,
+  "fields": {
+    "name": "Margarita",
+    "description": "Simple classic - thin crust, tomato sauce, fresh tomatoes, basil, and mozzarella.",
+    "price": "10.99",
+    "dish_type": 2,
+    "cooks": [
+      2
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 2,
+  "fields": {
+    "name": "Pepperoni",
+    "description": "Spicy pizza with pepperoni, mozzarella, and a tangy sauce.",
+    "price": "11.99",
+    "dish_type": 2,
+    "cooks": [
+      2
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 3,
+  "fields": {
+    "name": "Hawaiian",
+    "description": "Sweet and salty - crust, chicken, pineapple, mozzarella, and tomato sauce.",
+    "price": "12.99",
+    "dish_type": 2,
+    "cooks": [
+      2
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 5,
+  "fields": {
+    "name": "Citrus Explosion",
+    "description": "The freshness and brightness in every bite of our citrus cookies with hints of lemon and orange.",
+    "price": "2.49",
+    "dish_type": 1,
+    "cooks": [
+      3
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 6,
+  "fields": {
+    "name": "Napoleon",
+    "description": "",
+    "price": "6.69",
+    "dish_type": 5,
+    "cooks": [
+      2
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 7,
+  "fields": {
+    "name": "Varenyky",
+    "description": "Traditional Ukrainian dumplings with various fillings, served with sour cream.",
+    "price": "5.55",
+    "dish_type": 1,
+    "cooks": []
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 8,
+  "fields": {
+    "name": "Tomato soup",
+    "description": "Aromatic soup made from ripe tomatoes, seasoned with fresh herbs.",
+    "price": "4.29",
+    "dish_type": 6,
+    "cooks": []
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 9,
+  "fields": {
+    "name": "Karbonara",
+    "description": "Italian classic with creamy sauce, spaghetti, and tender bacon.",
+    "price": "10.49",
+    "dish_type": 11,
+    "cooks": []
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 10,
+  "fields": {
+    "name": "Chocolate Cake",
+    "description": "Rich chocolate cake with a molten chocolate center, served with vanilla ice cream. Price: $8.99",
+    "price": "7.69",
+    "dish_type": 12,
+    "cooks": [
+      6
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 11,
+  "fields": {
+    "name": "Cheesecake",
+    "description": "Creamy cheesecake with a graham cracker crust, topped with a tangy raspberry sauce.",
+    "price": "6.49",
+    "dish_type": 12,
+    "cooks": [
+      6
+    ]
+  }
+},
+{
+  "model": "kitchen.dish",
+  "pk": 12,
+  "fields": {
+    "name": "Tiramisu",
+    "description": "Classic Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cheese, dusted with cocoa powder.",
+    "price": "6.99",
+    "dish_type": 12,
+    "cooks": [
+      6
+    ]
+  }
+}
+]
