@@ -30,3 +30,30 @@ class CookUpdateForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = Cook
         fields = UserChangeForm.Meta.fields
+
+
+class DishTypeSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by dish type"})
+    )
+
+
+class DishSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by name"})
+    )
+
+
+class CookSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by username"})
+    )

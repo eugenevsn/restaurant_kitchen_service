@@ -14,8 +14,13 @@
         <i>no one assigned</i>
       {% endfor %}
     </p>
+      {% if dish in request.user.assigned_dishes.all %}
+          <a class="btn-danger" href="{% url 'kitchen:assign-dish' pk=dish.id %}">Delete me from this dish</a>
+      {% else %}
+          <a class="btn-success" href="{% url 'kitchen:assign-dish' pk=dish.id %}">Assign me to this dish</a>
+      {% endif %}
   </div>
   <hr>
-  <a href="javascript:history.back()">Back</a>
+  <form action="{% url 'kitchen:dish-list' %}"><input type="submit" value="Back"></form>
   
 {% endblock %}
