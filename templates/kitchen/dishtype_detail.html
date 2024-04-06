@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ dishtype.name }}</h2>
+  <hr>
+  <div>
+      {% if dishtype.dishes.all %}
+        {% for dish in dishtype.dishes.all %}
+          <li>{{ dish.name }}</li>
+        {% endfor %}
+      {% else %}
+        <i>no dishes assigned</i>
+      {% endif %}
+  </div>
+  <hr>
+  <a href="javascript:history.back()">Back</a>
+  
+{% endblock %}

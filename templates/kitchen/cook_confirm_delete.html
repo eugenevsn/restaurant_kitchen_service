@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>Deleting user {{ cook.username }}</h2>
+  <hr>
+  <h4>Are you sure you want to delete {{ cook.first_name }} {{ cook.last_name }} ?</h4>
+  <p style="color: red"><i>This action cannot be undone!</i></p>
+  <hr>
+  <form action="{% url 'kitchen:cook-delete' pk=cook.pk %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete" class="btn-danger">
+    <button type="button" onclick="window.history.back()" class="btn-secondary">No, cancel</button>
+  </form>
+{% endblock %}

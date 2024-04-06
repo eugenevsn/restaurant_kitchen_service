@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Kitchen Staff
+    <a href="{% url 'kitchen:cook-create' %}" class="btn btn-primary link-to-page">
+      create
+    </a>
+  </h1>
+
+  {% if cook_list %}
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Experience</th>
+    </tr>
+  {% for cook in cook_list %}
+    <tr>
+      <td>{{ cook.id }}</td>
+      <td><a href="{% url 'kitchen:cook-detail' pk=cook.id %}">
+        {{ cook.username }}
+        {{ cook.get_absolute_url }} {% if user == cook %} (me) {% endif %}</a>
+      </td>
+      <td>{{ cook.first_name }}</td>
+      <td>{{ cook.last_name }}</td>
+      <td>{{ cook.years_of_experience }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+  {% else %}
+    <p>There are no cooks in the kitchen.</p>
+  {% endif %}
+{% endblock %}

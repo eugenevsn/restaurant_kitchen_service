@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ dish.name }}</h2>
+  <p>{{ dish.description }}</p>
+  <hr>
+  <div>
+    <p><strong>Price:</strong> ${{ dish.price }}</p>
+    <p><strong>Type:</strong> {{ dish.dish_type.name }}</p>
+    <p><strong>Chef:</strong>
+      {% for cook in dish.cooks.all %}
+        {{ cook.first_name }} {{ cook.last_name }}{% if not forloop.last %}, {% endif %}
+      {% empty %}
+        <i>no one assigned</i>
+      {% endfor %}
+    </p>
+  </div>
+  <hr>
+  <a href="javascript:history.back()">Back</a>
+  
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>Delete type of the dish</h2>
+  <hr>
+  <h3>Are you sure you want to delete {{ dishtype }} ?</h3>
+  <p><i>All dishes from this type will also be deleted!</i></p>
+    {% for dish in dishtype.dishes.all %}
+      <li>{{ dish.name }} - ${{ dish.price }}</li>
+    {% endfor %}
+  <hr>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete" class="btn-danger">
+    <button type="button" onclick="window.history.back()" class="btn-secondary">No, cancel</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>Delete the dish</h2>
+  <hr>
+  <h3>Are you sure you want to delete {{ dish.name }} ?</h3>
+  <i>This dish is assigned for
+    {% for cook in dish.cooks.all %}
+      {{ cook.first_name }}{{ cook.last_name }}
+    {% endfor %}
+  </i>
+  <hr>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete" class="btn-danger">
+    <button type="button" onclick="window.history.back()" class="btn-secondary">No, cancel</button>
+  </form>
+{% endblock %}
