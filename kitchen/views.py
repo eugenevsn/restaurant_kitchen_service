@@ -5,7 +5,8 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import DishForm, CookCreationForm, CookUpdateForm, DishTypeSearchForm, DishSearchForm, CookSearchForm
+from .forms import DishForm, CookCreationForm, CookUpdateForm, DishTypeSearchForm, DishSearchForm, CookSearchForm, \
+    AssignForm
 from .models import Cook, Dish, DishType
 
 
@@ -113,6 +114,13 @@ class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("kitchen:dish-list")
 
 
+class AssignView(LoginRequiredMixin, generic.UpdateView):
+    model = Dish
+    form_class = AssignForm
+    template_name = 'kitchen/assign_dish.html'
+    success_url = reverse_lazy("kitchen:dish-list")
+
+
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
     paginate_by = 8
@@ -140,6 +148,7 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
     form_class = CookCreationForm
+    success_url = reverse_lazy('kitchen:cook-list')
 
 
 class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
@@ -161,4 +170,6 @@ def assign_dish(request, pk):
         cook.assigned_dishes.remove(dish)
     else:
         cook.assigned_dishes.add(dish)
-    return HttpResponseRedirect(reverse_lazy("kitchen:dish-detail", kwargs={'pk': dish.pk}))
+    previous_url = request.META.get('HTTP_REFERER', '/')
+
+    return HttpResponseRedirect(previous_url)

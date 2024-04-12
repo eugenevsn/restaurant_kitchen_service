@@ -1,13 +1,37 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
+
 {% block content %}
-	<h2>Deleting user {{ cook.username }}</h2>
-  <hr>
-  <h4>Are you sure you want to delete {{ cook.first_name }} {{ cook.last_name }} ?</h4>
-  <p style="color: red"><i>This action cannot be undone!</i></p>
-  <hr>
-  <form action="{% url 'kitchen:cook-delete' pk=cook.pk %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Yes, delete" class="btn-danger">
-    <button type="button" onclick="window.history.back()" class="btn-secondary">No, cancel</button>
-  </form>
+
+  <div class="page-header min-vh-75" style="background-image: url('{% static 'img/background.jpg' %}'); padding-top: 80px;">
+    <span class="mask bg-gradient-info opacity-6"></span>
+    <div class="container">
+      <section class="pt-sm-15 pb-5 position-relative">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+              <div class="card card-profile mt-lg-0 mt-5 overflow-hidden z-index-2">
+                <div class="card-body" style="padding-right: 2cm">
+                  <h2>Delete user {{ cook.username }}</h2>
+                  <hr>
+                  <h4>Are you sure you want to delete {{ cook.first_name }} {{ cook.last_name }} ?</h4>
+                  <p style="color: red"><i>This action cannot be undone!</i></p>
+                  <hr>
+                  <form action="{% url 'kitchen:cook-delete' pk=cook.pk %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="delete" class="btn btn-danger btn-sm px-2 py-2">
+                    <button type="button" onclick="window.history.back()" class="btn btn-secondary btn-sm px-2 py-2">cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
 {% endblock %}

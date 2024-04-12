@@ -1,26 +1,60 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
+
+{% block header %}
+
+{% include 'includes/navigation.html' %}
+
+{% endblock header %}
 
 {% block content %}
-  <h2>{{ dish.name }}</h2>
-  <p>{{ dish.description }}</p>
-  <hr>
-  <div>
-    <p><strong>Price:</strong> ${{ dish.price }}</p>
-    <p><strong>Type:</strong> {{ dish.dish_type.name }}</p>
-    <p><strong>Chef:</strong>
-      {% for cook in dish.cooks.all %}
-        {{ cook.first_name }} {{ cook.last_name }}{% if not forloop.last %}, {% endif %}
-      {% empty %}
-        <i>no one assigned</i>
-      {% endfor %}
-    </p>
-      {% if dish in request.user.assigned_dishes.all %}
-          <a class="btn-danger" href="{% url 'kitchen:assign-dish' pk=dish.id %}">Delete me from this dish</a>
-      {% else %}
-          <a class="btn-success" href="{% url 'kitchen:assign-dish' pk=dish.id %}">Assign me to this dish</a>
-      {% endif %}
+
+  <div class="page-header min-vh-75" style="background-image: url('{% static 'img/background.jpg' %}');">
+    <span class="mask bg-gradient-info opacity-6"></span>
+    <div class="container">
+      <section class="pt-sm-15 pb-5 position-relative">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+              <div class="card card-profile mt-lg-0 mt-5 overflow-hidden z-index-2">
+                <div class="card-body" style="padding-right: 2cm">
+                
+                  <h2>{{ dish.name }}</h2>
+                  <p>{{ dish.description }}</p>
+                  <hr>
+                  <div>
+                    <p><strong>Price:</strong> ${{ dish.price }}</p>
+                    <p><strong>Type:</strong> {{ dish.dish_type.name }}</p>
+                    <p><strong>Chef:</strong>
+                      {% for cook in dish.cooks.all %}
+                        {{ cook.first_name }} {{ cook.last_name }}{% if not forloop.last %}, {% endif %}
+                      {% empty %}
+                        <i>no one assigned</i>
+                      {% endfor %}
+                    </p>
+                    <br>
+                    <p>
+                      {% if dish in request.user.assigned_dishes.all %}
+                          <a class="btn btn-danger btn-sm px-2 py-2" href="{% url 'kitchen:assign-dish' pk=dish.id %}">Delete me from this dish</a>
+                      {% else %}
+                          <a class="btn btn-success btn-sm px-2 py-2" href="{% url 'kitchen:assign-dish' pk=dish.id %}">Assign me to this dish</a>
+                      {% endif %}
+                  
+                      <a style="margin-left: 20px" class="btn btn-success btn-sm px-2 py-2" href="{% url 'kitchen:dish-assign' pk=dish.id %}">Assign someone else</a>
+                    </p>
+                  </div>
+                  <form action="{% url 'kitchen:dish-list' %}"><input type="submit" value="Back"></form>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
-  <hr>
-  <form action="{% url 'kitchen:dish-list' %}"><input type="submit" value="Back"></form>
-  
-{% endblock %}
+                  
+{% endblock content %}

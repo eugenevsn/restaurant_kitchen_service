@@ -1,48 +1,78 @@
 {% extends "base.html" %}
+
+{% load static %}
+
 {% load crispy_forms_filters %}
 
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
+
 {% block content %}
-  <h1> Dishes
-    <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
-      new
-    </a>
-  </h1>
-    <form method="get" action="" class="form-inline">
-      {{ search_form|crispy }}
-      <input class="btn-secondary" type="submit" value="🔎">
-    </form>
-  {% if dish_list %}
-    <table class="table">
-      <tr>
-        <th>id</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Dish type</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-    {% for dish in dish_list %}
-      <tr>
-        <td>{{ dish.id }}</td>
-        <td><a href="{% url 'kitchen:dish-detail' pk=dish.id %}">
-            {{ dish.name }}
-          </a>
-        </td>
-        <td>${{ dish.price }}</td>
-        <td>{{ dish.dish_type.name }}</td>
-        <td><a href="{% url 'kitchen:dish-update' pk=dish.id %}">
-            Update
-          </a>
-        </td>
-        <td><a style="color: red" href="{% url 'kitchen:dish-delete' pk=dish.id %}">
-            Delete
-          </a>
-        </td>
-      </tr>
-    {% endfor %}
-    </table>
-    
-  {% else %}
-    <p>There are no dishes in kitchen</p>
-  {% endif %}
-{% endblock %}
+
+  <div class="page-header min-vh-75" style="background-image: url('{% static 'img/background.jpg' %}'); padding-top: 80px;">
+    <span class="mask bg-gradient-info opacity-6"></span>
+    <div class="container">
+      <section class="pt-sm-4 pb-5 position-relative">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div class="card" style="padding: 10px;">
+                <div class="card-body" style="padding-bottom: 1px">
+
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 style="margin-bottom: 12px;">Menu</h2>
+                    <button type="button" onclick="window.location.href='{% url 'kitchen:dish-create' %}'" class="btn btn-primary btn-sm px-2 py-2">new</button>
+                  </div>
+                  <form method="get" action="" class="form-inline">
+                    {{ search_form|crispy }}
+                    <input class="btn-secondary" type="submit" value="🔎">
+                  </form>
+                  {% if dish_list %}
+                    <table class="table">
+                      <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Dish type</th>
+                        <th>Cooks</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                      </tr>
+                    {% for dish in dish_list %}
+                      <tr>
+                        <td>{{ dish.id }}</td>
+                        <td><a href="{% url 'kitchen:dish-detail' pk=dish.id %}">
+                            {{ dish.name }}
+                          </a>
+                        </td>
+                        <td>${{ dish.price }}</td>
+                        <td>{{ dish.dish_type.name }}</td>
+                        <td>{{ dish.cooks.count }}</td>
+                        <td><a href="{% url 'kitchen:dish-update' pk=dish.id %}">
+                            Update
+                          </a>
+                        </td>
+                        <td><a style="color: red" href="{% url 'kitchen:dish-delete' pk=dish.id %}">
+                            Delete
+                          </a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </table>
+
+                  {% else %}
+                    <p>There are no dishes in kitchen</p>
+                  {% endif %}
+
+                </div>
+              
+              {% include "includes/pagination.html" %}
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+{% endblock content %}

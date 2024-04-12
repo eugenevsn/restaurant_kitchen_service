@@ -1,18 +1,49 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
+
+{% block header %}
+
+{% include 'includes/navigation.html' %}
+
+{% endblock header %}
 
 {% block content %}
-  <h2>{{ dishtype.name }}</h2>
-  <hr>
-  <div>
-      {% if dishtype.dishes.all %}
-        {% for dish in dishtype.dishes.all %}
-          <li>{{ dish.name }}</li>
-        {% endfor %}
-      {% else %}
-        <i>no dishes assigned</i>
-      {% endif %}
-  </div>
-  <hr>
-  <a href="javascript:history.back()">Back</a>
+
+  <div class="page-header min-vh-75" style="background-image: url('{% static 'img/background.jpg' %}');">
+    <span class="mask bg-gradient-info opacity-6"></span>
+    <div class="container">
+      <section class="pt-sm-15 pb-5 position-relative">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+               <div class="card card-profile mt-lg-0 mt-5 z-index-2" style="max-height: 375px; max-width: 600px; overflow-y: auto;">
+                <div class="card-body" style="padding-right: 2cm">
   
-{% endblock %}
+                  <h2>{{ dishtype.name }}</h2>
+                  <hr>
+                  <div>
+                      {% if dishtype.dishes.all %}
+                        {% for dish in dishtype.dishes.all %}
+                          <li>{{ dish.name }}</li>
+                        {% endfor %}
+                      {% else %}
+                        <i>no dishes assigned</i>
+                      {% endif %}
+                  </div>
+                  <hr>
+                  <form action="{% url 'kitchen:dishtype-list' %}"><input type="submit" value="Back"></form>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  
+{% endblock content %}
