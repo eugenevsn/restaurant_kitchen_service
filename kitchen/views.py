@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 
 from .forms import DishForm, CookCreationForm, CookUpdateForm, DishTypeSearchForm, DishSearchForm, CookSearchForm, \
     AssignForm
@@ -162,14 +162,15 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("kitchen:cook-list")
 
 
-@login_required
-def assign_dish(request, pk):
-    cook = Cook.objects.get(username=request.user.username)
-    dish = get_object_or_404(Dish, pk=pk)
-    if dish in cook.assigned_dishes.all():
-        cook.assigned_dishes.remove(dish)
-    else:
-        cook.assigned_dishes.add(dish)
-    previous_url = request.META.get('HTTP_REFERER', '/')
+class AssignDish(LoginRequiredMixin, View):
+    def get(self, request, pk: int) -> HttpResponseRedirect:
+        cook = Cook.objects.get(username=request.user.username)
+        dish = get_object_or_404(Dish, pk=pk)
 
-    return HttpResponseRedirect(previous_url)
+        if dish in cook.assigned_dishes.all():
+            cook.assigned_dishes.remove(dish)
+        else:
+            cook.assigned_dishes.add(dish)
+
+        previous_url = request.META.get('HTTP_REFERER', '/')
+        return HttpResponseRedirect(previous_url)

@@ -7,7 +7,7 @@ from .views import (
     DishTypeCreateView,
     DishTypeUpdateView,
     DishTypeDeleteView,
-    assign_dish,
+    AssignDish,
     DishListView,
     DishDetailView,
     DishCreateView,
@@ -35,7 +35,7 @@ urlpatterns = [
     path("dish/<int:pk>/update/", DishUpdateView.as_view(), name="dish-update"),
     path("dish/<int:pk>/assigned/", AssignView.as_view(), name="dish-assign"),
     path("dish/<int:pk>/delete/", DishDeleteView.as_view(), name="dish-delete"),
-    path("dish/<int:pk>/assign/", assign_dish, name="assign-dish"),
+    path("dish/<int:pk>/assign/", AssignDish.as_view(), name="assign-dish"),
 
     path("cook/", CookListView.as_view(), name="cook-list"),
     path("cook/<int:pk>/", CookDetailView.as_view(), name="cook-detail"),
