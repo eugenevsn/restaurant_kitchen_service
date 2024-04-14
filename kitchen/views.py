@@ -163,7 +163,7 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 
 class AssignDish(LoginRequiredMixin, View):
-    def get(self, request, pk: int) -> HttpResponseRedirect:
+    def post(self, request, pk: int) -> HttpResponseRedirect:
         cook = Cook.objects.get(username=request.user.username)
         dish = get_object_or_404(Dish, pk=pk)
 
