@@ -16,3 +16,11 @@ python manage.py runserver # starts Django Server
 ## Check it out
 
 [Restaurant project deployed to Render](https://restaurant-kitchen-service-uu9y.onrender.com)
+
+### Log in for visit website:
+
+login:
+> user
+
+password: 
+>user12345
