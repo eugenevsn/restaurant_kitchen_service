@@ -2,10 +2,7 @@
 # Restaurant Kitchen Service
 > Making kitchen communication smoother by letting cook's create dishes, dish types, and assign cooking duties easily.
 
-## Installing / Getting started
-
-A quick introduction of the minimal setup you need to get a hello world up &
-running.
+## Installing
 
 ```shell
 git clone https://github.com/eugenevsn/restaurant_kitchen_service
@@ -17,4 +14,5 @@ python manage.py runserver # starts Django Server
 ```
 
 ## Check it out
-<!--link-->
+
+[Library project deployed to Render](https://restaurant-kitchen-service-uu9y.onrender.com)
