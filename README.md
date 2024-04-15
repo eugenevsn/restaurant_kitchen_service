@@ -15,4 +15,4 @@ python manage.py runserver # starts Django Server
 
 ## Check it out
 
-[Library project deployed to Render](https://restaurant-kitchen-service-uu9y.onrender.com)
+[Restaurant project deployed to Render](https://restaurant-kitchen-service-uu9y.onrender.com)
