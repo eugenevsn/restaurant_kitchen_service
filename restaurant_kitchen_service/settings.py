@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "SECRET_KEY")
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
 
-ALLOWED_HOSTS = ["127.0.0.1", "https://restaurant-kitchen-service-uu9y.onrender.com/"]
+ALLOWED_HOSTS = ["127.0.0.1", "restaurant-kitchen-service-uu9y.onrender.com"]
 
 
 # Application definition
