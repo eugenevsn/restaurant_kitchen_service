@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
+
+{% block content %}
+
+  <div class="page-header min-vh-75" style="background-image: url('{% static 'img/background.jpg' %}'); padding-top: 80px;">
+    <span class="mask bg-gradient-info opacity-6"></span>
+    <div class="container">
+      <section class="pt-sm-15 pb-5 position-relative">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+              <div class="card card-profile mt-lg-0 mt-5 overflow-hidden z-index-2">
+                <div class="card-body" style="padding-right: 2cm">
+                
+                  <h2>Delete the dish</h2>
+                  <hr>
+                  <h3>Are you sure you want to delete {{ dish.name }} ?</h3>
+                  {% if dish.cooks.exists %}
+                    <i style="color: red;">This dish is assigned for
+                  {% for cook in dish.cooks.all %}
+                    {{ cook.first_name }} {{ cook.last_name }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                    </i>
+                  {% else %}
+                    <i>No one assigned for this dish</i>
+                  {% endif %}
+                  <hr>
+                  <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="delete" class="btn btn-danger btn-sm px-2 py-2">
+                    <button type="button" onclick="window.history.back()" class="btn btn-secondary btn-sm px-2 py-2">cancel</button>
+                  </form>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+{% endblock content %}

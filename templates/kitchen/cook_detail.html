@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
+
+{% block header %}
+
+{% include 'includes/navigation.html' %}
+
+{% endblock header %}
+
+{% block content %}
+  
+  <div class="page-header min-vh-75" style="background-image: url('{% static 'img/background.jpg' %}');">
+    <span class="mask bg-gradient-info opacity-6"></span>
+    <div class="container">
+      <section class="pt-sm-15 pb-5 position-relative">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 text-start mb-4">
+              <div class="d-inline-block mt-2">
+                <button class="button small" onclick="window.location.href='{% url 'kitchen:cook-list' %}'"
+                        style="opacity: 0.6; border-radius: 3px; border: none; padding: 5px 10px;"
+                        title="Back to users"> ⏴
+                </button>
+              </div>
+              <div class="d-inline-block align-top" style="margin-left: 10px;">
+                <h2 class="text-white z-index-1 position-relative">User Profile</h2>
+                <p class="text-white opacity-8 mb-0">{{ cook.username }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-auto">
+              <div class="card card-profile mt-lg-0 mt-5 z-index-2" style="max-height: 375px; max-width: 600px; overflow-y: auto;">
+                <div class="card-body" style="padding-right: 2cm">
+                  <h5 class="text-info mb-4">{{ cook.first_name }} {{ cook.last_name }}</h5>
+                  <p><strong>Username:</strong> {{ cook.username }}</p>
+                  <p><strong>First name:</strong> {{ cook.first_name }}</p>
+                  <p><strong>Last name:</strong> {{ cook.last_name }}</p>
+                  <p><strong>Experience:</strong> {{ cook.years_of_experience }} year{{ cook.years_of_experience|pluralize }}</p>
+                  <p><strong>Is staff:</strong> {{ cook.is_staff }}</p>
+                  <hr>
+                  <button class="btn btn-success btn-sm px-2 py-2" onclick="window.location.href='{% url 'kitchen:cook-update' pk=cook.id %}'">Update</button>
+                  <button class="btn btn-danger btn-sm px-2 py-2" onclick="window.location.href='{% url 'kitchen:cook-delete' pk=cook.id %}'">Delete</button>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-auto">
+              <div class="card card-profile mt-lg-0 mt-5 z-index-2" style="max-height: 375px; max-width: 600px; overflow-y: auto;">
+                <div class="card-body" style="padding-right: 2cm">
+                  <h5 class="text-info mb-4">Assigned dishes</h5>
+                  {% for dish in cook.assigned_dishes.all %}
+                    <p><strong>Name:</strong> {{ dish.name }}</p>
+                    <p><strong>Type:</strong> {{ dish.dish_type.name }}</p>
+                    <p class="text-muted"><strong>Id:</strong> {{dish.id}}</p>
+                    <p style="padding-top: 12px;">
+                      <a class="btn btn-neutral btn-sm px-2 py-2" href="{% url 'kitchen:dish-assign' pk=dish.id %}">Update</a>
+                    {% if dish in request.user.assigned_dishes.all %}
+                        <a class="btn btn-danger btn-sm px-2 py-2" href="{% url 'kitchen:assign-dish' pk=dish.id %}">Delete me from this dish</a>
+                    {% else %}
+                        <a class="btn btn-success btn-sm px-2 py-2" href="{% url 'kitchen:assign-dish' pk=dish.id %}">Assign me to this dish</a>
+                    {% endif %}
+                    </p>
+                    {% if not forloop.last %}
+                      <div style="border-top: 1px dashed #ccc; margin: 10px 0;"></div>
+                    {% endif %}
+                  {% empty %}
+                    <p>No dishes!</p>
+                    <p><a href="{% url 'kitchen:dish-list' %}" class="btn btn-neutral btn-sm px-2 py-2">Add</a></p>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="position-absolute w-100 z-index-1 bottom-0">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="moving-waves">
+          <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
+          <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
+          <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
+          <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(233,233,233,0.95)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  {% endblock content %}
+
+
+  {% block javascrips %}
+
+    <script>
+      // get the element to animate
+      var element = document.getElementById('count-stats');
+      var elementHeight = element.clientHeight;
+
+      // listen for scroll event and call animate function
+
+      document.addEventListener('scroll', animate);
+
+      // check if element is in view
+      function inView() {
+        // get window height
+        var windowHeight = window.innerHeight;
+        // get number of pixels that the document is scrolled
+        var scrollY = window.scrollY || window.pageYOffset;
+        // get current scroll position (distance from the top of the page to the bottom of the current viewport)
+        var scrollPosition = scrollY + windowHeight;
+        // get element position (distance from the top of the page to the bottom of the element)
+        var elementPosition = element.getBoundingClientRect().top + scrollY + elementHeight;
+
+        // is scroll position greater than element position? (is element in view?)
+        if (scrollPosition > elementPosition) {
+          return true;
+        }
+
+        return false;
+      }
+
+      var animateComplete = true;
+      // animate element when it is in view
+      function animate() {
+
+        // is element in view?
+        if (inView()) {
+          if (animateComplete) {
+            if (document.getElementById('state1')) {
+              const countUp = new CountUp('state1', document.getElementById("state1").getAttribute("countTo"));
+              if (!countUp.error) {
+                countUp.start();
+              } else {
+                console.error(countUp.error);
+              }
+            }
+            if (document.getElementById('state2')) {
+              const countUp1 = new CountUp('state2', document.getElementById("state2").getAttribute("countTo"));
+              if (!countUp1.error) {
+                countUp1.start();
+              } else {
+                console.error(countUp1.error);
+              }
+            }
+            if (document.getElementById('state3')) {
+              const countUp2 = new CountUp('state3', document.getElementById("state3").getAttribute("countTo"));
+              if (!countUp2.error) {
+                countUp2.start();
+              } else {
+                console.error(countUp2.error);
+              };
+            }
+            animateComplete = false;
+          }
+        }
+      }
+
+      if (document.getElementById('typed')) {
+        var typed = new Typed("#typed", {
+          stringsElement: '#typed-strings',
+          typeSpeed: 90,
+          backSpeed: 90,
+          backDelay: 200,
+          startDelay: 500,
+          loop: true
+        });
+      }
+    </script>
+    <script>
+      if (document.getElementsByClassName('page-header')) {
+        window.onscroll = debounce(function() {
+          var scrollPosition = window.pageYOffset;
+          var bgParallax = document.querySelector('.page-header');
+          var oVal = (window.scrollY / 3);
+          bgParallax.style.transform = 'translate3d(0,' + oVal + 'px,0)';
+        }, 6);
+      }
+    </script>
+
+  {% endblock javascrips %}
